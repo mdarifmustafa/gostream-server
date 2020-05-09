@@ -3,6 +3,7 @@ package com.wirekind.gostream.model;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -16,14 +17,18 @@ public class User {
 	private Date dateOfBirth;
 	private String emailId;
 	private String joinedRoom;
-	private boolean roomPublisher;
+	private List<String> roomPublishing;
 
-	public boolean isRoomPublisher() {
-		return roomPublisher;
+	public List<String> getRoomPublishing() {
+		return roomPublishing;
 	}
 
-	public void setRoomPublisher(boolean roomPublisher) {
-		this.roomPublisher = roomPublisher;
+	public boolean addRoomPublishing(String room) {
+		if (!roomPublishing.contains(room)) {
+			return roomPublishing.add(room);
+		} else {
+			return false;
+		}
 	}
 
 	public String getUserName() {
@@ -66,7 +71,7 @@ public class User {
 		result = prime * result + ((emailId == null) ? 0 : emailId.hashCode());
 		result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
 		result = prime * result + ((joinedRoom == null) ? 0 : joinedRoom.hashCode());
-		result = prime * result + (roomPublisher ? 1231 : 1237);
+		result = prime * result + ((roomPublishing == null) ? 0 : roomPublishing.hashCode());
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
@@ -100,7 +105,10 @@ public class User {
 				return false;
 		} else if (!joinedRoom.equals(other.joinedRoom))
 			return false;
-		if (roomPublisher != other.roomPublisher)
+		if (roomPublishing == null) {
+			if (other.roomPublishing != null)
+				return false;
+		} else if (!roomPublishing.equals(other.roomPublishing))
 			return false;
 		if (userName == null) {
 			if (other.userName != null)
@@ -125,7 +133,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userName=" + userName + ", fullName=" + fullName + ", dateOfBirth=" + dateOfBirth + ", emailId="
-				+ emailId + ", joinedRoom=" + joinedRoom + ", roomPublisher=" + roomPublisher + "]";
+				+ emailId + ", joinedRoom=" + joinedRoom + ", roomPublishing=" + roomPublishing + "]";
 	}
 
 }

@@ -50,7 +50,7 @@ public class Users {
 	public void roomPublisher(final String userName, final String room) {
 		this.users.forEach(user -> {
 			if (user.getUserName().equals(userName)) {
-				user.setRoomPublisher(true);
+				user.addRoomPublishing(room);
 			}
 		});
 	}
