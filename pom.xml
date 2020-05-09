@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.wirekind</groupId>
 	<artifactId>gostream</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>gostream</name>
 	<description>GoStream Server</description>

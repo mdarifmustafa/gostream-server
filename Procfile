@@ -1,3 +1,1 @@
-heroku buildpacks:clear
-heroku ps:scale web=1
-java -Dserver.port=$PORT $JAVA_OPTS -war target/*.war
+web: java -Dserver.port=$PORT -jar target/gostream-0.1-SNAPSHOT.war
