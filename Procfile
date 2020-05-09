@@ -1,1 +1,1 @@
-web: java -war target/gostream-0.0.1-SNAPSHOT.war com.wirekind.gostream.GostreamApplication $PORT
+web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war

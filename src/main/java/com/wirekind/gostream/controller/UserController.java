@@ -15,6 +15,7 @@ import com.wirekind.gostream.model.User;
 import com.wirekind.gostream.model.Users;
 
 @RestController
+@RequestMapping("/api")
 public class UserController {
 
 	@Autowired
@@ -38,6 +39,12 @@ public class UserController {
 	@RequestMapping(value = "/remove-user", method = RequestMethod.GET)
 	public Boolean removeRoom(@RequestParam(name = "username") String userName) {
 		return users.removeUser(userName);
+	}
+	
+	// Will return room number or empty if the user is free
+	@RequestMapping(value = "/engaged-user", method = RequestMethod.GET)
+	public String engagedRoom(@RequestParam(name = "username") String userName) {
+		return users.getUsers().stream().filter(user -> user.getUserName().equals(userName)).findFirst().get().getJoinedRoom();
 	}
 
 }
