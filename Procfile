@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/gostream-0.0.1-SNAPSHOT.war com.wirekind.gostream.GostreamApplication $PORT
+web: java $JAVA_OPTS -cp target/gostream-0.0.1-SNAPSHOT.war $PORT
