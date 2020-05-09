@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/gostream-0.0.1-SNAPSHOT.war $PORT
+java -Dserver.port=$PORT $JAVA_OPTS -war target/*.war
