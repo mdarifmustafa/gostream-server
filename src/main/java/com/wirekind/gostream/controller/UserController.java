@@ -40,5 +40,11 @@ public class UserController {
 	public Boolean removeRoom(@RequestParam(name = "username") String userName) {
 		return users.removeUser(userName);
 	}
+	
+	// Will return room number or empty if the user is free
+	@RequestMapping(value = "/engaged-user", method = RequestMethod.GET)
+	public String engagedRoom(@RequestParam(name = "username") String userName) {
+		return users.getUsers().stream().filter(user -> user.getUserName().equals(userName)).findFirst().get().getJoinedRoom();
+	}
 
 }
