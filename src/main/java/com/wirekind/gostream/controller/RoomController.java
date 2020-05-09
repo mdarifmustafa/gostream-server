@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wirekind.gostream.model.Room;
+import com.wirekind.gostream.model.User;
 import com.wirekind.gostream.model.Users;
 
 @RestController
+@RequestMapping("/api")
 public class RoomController {
 
 	@Autowired
@@ -51,7 +53,7 @@ public class RoomController {
 	public boolean removeRoom(@RequestParam(name = "room") String requestedRoom) {
 		return room.removeRoom(requestedRoom);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/remove-rooms", method = RequestMethod.PUT)
 	public boolean removeRooms(@RequestParam(name = "rooms") Object requestedRooms) {
@@ -68,10 +70,18 @@ public class RoomController {
 	public List<String> getAvailableRooms() {
 		return room.getAvailableRooms().stream().map(map -> map.get("address")).collect(Collectors.toList());
 	}
-	
+
 	@RequestMapping(value = "/join-room", method = RequestMethod.GET)
-	public boolean joinRoom(@RequestParam(name = "userName") String userName, @RequestParam(name = "room") String room) {
+	public boolean joinRoom(@RequestParam(name = "userName") String userName,
+			@RequestParam(name = "room") String room) {
 		return users.joinRoom(userName, room);
+	}
+	
+	// based on room number, will return List of joined user-names
+	@RequestMapping(value = "/joined-users", method = RequestMethod.GET)
+	public List<String> joinedUsers(@RequestParam(name = "room") String room) {
+		List<User> joinedUser = users.getUsers().stream().filter(user -> user.getJoinedRoom().equals(room)).collect(Collectors.toList());
+		return joinedUser.stream().map(user -> user.getUserName()).collect(Collectors.toList());
 	}
 
 }
