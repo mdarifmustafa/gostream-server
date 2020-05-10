@@ -28,7 +28,7 @@ public class UserController {
 		if (user.validate()) {
 			return users.addUser(user);
 		} else {
-			return new ResponseEntity<String>("500 | Internal Server Error.", HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<String>("Something went wrong meanwhile parsing, please check datatypes.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
