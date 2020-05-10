@@ -24,7 +24,7 @@ public class Users {
 			} else {
 				return new ResponseEntity<String>("User already exists", HttpStatus.CONFLICT);
 			}
-		} catch (NullPointerException ex) {
+		} catch (Exception ex) {
 			System.err.println(ex);
 			return new ResponseEntity<String>("500 | Internal Server Error.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
