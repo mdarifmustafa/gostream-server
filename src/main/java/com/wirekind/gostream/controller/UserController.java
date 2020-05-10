@@ -25,7 +25,11 @@ public class UserController {
 
 	@RequestMapping(value = "/create-user", method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<String> createUser(@RequestBody User user) {
-		return users.addUser(user);
+		if (user.validate()) {
+			return users.addUser(user);
+		} else {
+			return new ResponseEntity<String>("500 | Internal Server Error.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@RequestMapping(value = "/registered-users", method = RequestMethod.GET, produces = "application/json")

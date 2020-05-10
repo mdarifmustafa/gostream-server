@@ -135,5 +135,12 @@ public class User {
 		return "User [userName=" + userName + ", fullName=" + fullName + ", dateOfBirth=" + dateOfBirth + ", emailId="
 				+ emailId + ", joinedRoom=" + joinedRoom + ", roomPublishing=" + roomPublishing + "]";
 	}
+	
+	public boolean validate() {
+		if (this.userName != null && this.fullName != null && this.dateOfBirth != null && this.emailId != null) {
+			return true;
+		}
+		return false;
+	}
 
 }
